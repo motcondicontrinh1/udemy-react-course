@@ -7,22 +7,27 @@ export default class App extends Component {
     super();
 
     this.state = {
-      string: "Hello Hung"
+      monsters: [
+        {
+          name: 'React',
+          id: '001',
+        },  
+        {
+          name: 'Angular',
+          id: '002'
+        },
+        {
+          name: 'Vue',
+          id: '003'
+        },
+      ]
     }
   }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>{this.state.string}</p>
-          <button onClick={() => this.setState({ string: "My Nghi" })}>
-            Change Text
-          </button>
-          <button onClick={() => this.setState({ string: "1" })}>
-            Change Text
-          </button>
-        </header>
+       {this.state.monsters.map(monsters => <h1 key={monsters.id}>{monsters.name}</h1>)
+       }
       </div>
     );
   }
