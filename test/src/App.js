@@ -22,18 +22,25 @@ export default class App extends React.Component {
   }
 
   render() {
-    const { monsters, searchField } = this.state;
-    const filteredMonsters = monsters.filter((monster) =>
-      monster.name.toLowerCase().includes(searchField.toLowerCase())
-    );
+    const filteredMonsters = this.searchFilter();
     return (
       <div className="App">
         <SearchBox
           placeholder="search monsters"
-          handleChange={(e) => this.setState({ searchField: e.target.value })}
+          handleChange={this.handleChange()}
         />
          <CardList monsters={filteredMonsters} />
       </div>
     );
+  }
+
+  handleChange() {
+    return (e) => this.setState({ searchField: e.target.value });
+  }
+
+  searchFilter() {
+    const { monsters, searchField } = this.state;
+    const filteredMonsters = monsters.filter((monster) => monster.name.toLowerCase().includes(searchField.toLowerCase()));
+    return filteredMonsters;
   }
 }
