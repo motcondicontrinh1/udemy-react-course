@@ -1,35 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-export default class App extends Component {
+export default class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      monsters: [
-        {
-          name: 'React',
-          id: '001',
-        },  
-        {
-          name: 'Angular',
-          id: '002'
-        },
-        {
-          name: 'Vue',
-          id: '003'
-        },
-      ]
-    }
+      monsters: [],
+    };
   }
+
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then(response => response.json())
+    .then(users => this.setState({monsters: users}));
+  }
+
   render() {
     return (
       <div className="App">
        {this.state.monsters.map(monsters => <h1 key={monsters.id}>{monsters.name}</h1>)
-       }
+        {this.state.monsters.map((monsters) => (
+          <h1 key={monsters.id}>{monsters.name}</h1>
+        ))}
       </div>
     );
   }
 }
-
