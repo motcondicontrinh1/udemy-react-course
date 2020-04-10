@@ -25,6 +25,7 @@ export default class App extends React.Component {
     const filteredMonsters = this.searchFilter();
     return (
       <div className="App">
+        <h1>Monster Searcher</h1>
         <SearchBox
           placeholder="search monsters"
           handleChange={this.handleChange()}
